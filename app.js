@@ -7,7 +7,7 @@ const expressValidator = require('express-validator');
 const app = express();
 
 
-app.use(express.static(path.join(__dirname,'client'),{maxAge: 0}))//315360000 }))
+app.use(express.static(path.join(__dirname,'client/dist')))//315360000 }))
 
 
 app.set('views',path.join(__dirname, 'views'))
