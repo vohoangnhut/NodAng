@@ -1,0 +1,96 @@
+body {
+  background:#fff;
+}
+
+/* Main Box */
+.mainDivOrder {
+  height: 80%;
+  width: 100%;
+padding: 10px;
+    background: #fff;
+}
+
+.leftDivOrder, .rightDivOrder {
+    height: 100%;
+    width: 50%;
+    border: 1px solid;
+    float: left;
+    padding: 10px;
+}
+
+
+/* E-commerce */
+.cus-product-box {
+  padding: 0;
+  border: 1px solid #e7eaec;
+      background: #fff;
+	      width: 100%;
+		  float: left;
+    margin: 2px;
+	position: relative;
+      border: 1px solid cadetblue;
+}
+
+.cus-product-imitation {
+  /*text-align: center;
+  padding: 90px 0;
+  background-color: #f8f8f9;
+  color: #bebec3;
+  font-weight: 600;*/
+  width: 100%;
+}
+
+.cus-product-imitation > img {
+	    width: 100%;
+          height: 75px;
+}
+.cus-product-desc {
+      padding: 2px;
+    position: relative;
+    background: #f0f0f0;
+	text-align: center;
+	    max-height: 40px;
+      min-height: 40px;
+    overflow: hidden;
+    font-weight: 700;
+
+}
+
+.cus-product-price {
+        color: #ffffff;
+    background-color: #e90909;
+    padding: 4px;
+    position: absolute;
+    right: 0;
+    font-size: large;
+    width: 40px;
+    text-align: center;
+	
+}
+
+.cus-product-price:hover {
+	cursor:pointer;
+}
+
+.input-group.bootstrap-touchspin {
+    max-width: 107px;
+    min-width: 107px;
+}
+
+
+.cusColAlign {
+  padding-top: 116px !important;
+}
+
+.panel-body.cus-panel-body {
+  height: 300px;
+}
+
+.cus-widget {
+	border-radius: 5px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+    

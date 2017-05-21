@@ -10,7 +10,7 @@ const app = express();
 app.use(express.static(path.join(__dirname,'client/dist')))//315360000 }))
 
 
-app.set('views',path.join(__dirname, 'views'))
+app.set('views',path.join(__dirname, 'client/dist'))
 app.set('view engine', 'ejs')
 app.engine('html',require('ejs').renderFile)
 
