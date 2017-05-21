@@ -1,0 +1,12 @@
+
+<div class="container-scroll-parent">
+    <div class="wrapper wrapper-content animated fadeInRight"> 
+      
+
+         <p *ngIf="!isEdit" (click)="isEdit=true;nanc.focus()" >{{name}}</p>
+        <textarea *ngIf="isEdit" (blur)="isEdit=false;bindingName(name1.value)" 
+            type="text" #name1 (keyup.enter)="bindingName(name1.value)"
+            >{{name}}</textarea>
+            <input #nanc value="namasdsd"/>
+    </div>
+</div>

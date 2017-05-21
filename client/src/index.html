@@ -21,7 +21,7 @@
 <body>
   <app-root>Loading...</app-root>
 
-  <!-- Mainly scripts -->
+    <!-- Mainly scripts -->
     <script src="assets/js/jquery-3.1.1.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
@@ -37,23 +37,6 @@
     <script src="assets/js/inspinia.js"></script>
     <script src="assets/js/plugins/pace/pace.min.js"></script>
 
-    <script>
-        $(document).ready(function(){
-
-            $("#todo, #inprogress, #completed").sortable({
-                connectWith: ".connectList",
-                update: function( event, ui ) {
-
-                    var todo = $( "#todo" ).sortable( "toArray" );
-                    var inprogress = $( "#inprogress" ).sortable( "toArray" );
-                    var completed = $( "#completed" ).sortable( "toArray" );
-                    console.log("ToDo: " + window.JSON.stringify(todo) + " --- " + "In Progress: " + window.JSON.stringify(inprogress) + " --- " + "Completed: " + window.JSON.stringify(completed));
-                }
-            }).disableSelection();
-
-            //$('.container-scroll-parent').perfectScrollbar();
-
-        });
-    </script>
+   
 </body>
 </html>
