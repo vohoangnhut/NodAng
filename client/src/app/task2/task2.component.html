@@ -3,10 +3,21 @@
     <div class="wrapper wrapper-content animated fadeInRight"> 
       
 
-         <p *ngIf="!isEdit" (click)="isEdit=true;nanc.focus()" >{{name}}</p>
-        <textarea *ngIf="isEdit" (blur)="isEdit=false;bindingName(name1.value)" 
-            type="text" #name1 (keyup.enter)="bindingName(name1.value)"
-            >{{name}}</textarea>
-            <input #nanc value="namasdsd"/>
+            <div class="ui-widget">
+                <label for="tags">Tags: </label>
+                <input id="tags">
+            </div>
+
+            <br/>
+            <div>
+                <h3>To-do Simply dummy text of the printing and typesetting industry.</h3>
+                <textarea class='autoExpand' rows='1' data-min-rows='1' >
+                    To-do Simply dummy text of the printing and typesetting industry.
+                </textarea>
+            </div>
+
+            <textarea id="textDemo">
+                    To-do Simply dummy text of the printing and typesetting industry.
+                </textarea>
     </div>
 </div>

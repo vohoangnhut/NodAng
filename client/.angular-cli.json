@@ -19,9 +19,25 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "./assets/css/bootstrap.min.css",
+        "./assets/font-awesome/css/font-awesome.css",
+        "./assets/css/plugins/jQueryUI/jquery-ui.css",
+        "./assets/css/plugins/toastr/toastr.min.css",
+        "./assets/css/animate.css",
+        "./assets/css/style.css"
       ],
-      "scripts": [],
+
+      "scripts": [
+        "./assets/js/jquery-3.1.1.min.js",
+        "./assets/js/bootstrap.min.js",
+        "./assets/js/plugins/metisMenu/jquery.metisMenu.js",
+        "./assets/js/plugins/slimscroll/jquery.slimscroll.min.js",
+        "./assets/js/plugins/jquery-ui/jquery-ui.min.js",
+        "./assets/js/plugins/touchpunch/jquery.ui.touch-punch.min.js",
+        "./assets/js/inspinia.js",
+        "./assets/js/plugins/pace/pace.min.js",
+        "../node_modules/autosize/dist/autosize.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
