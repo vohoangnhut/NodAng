@@ -23,6 +23,17 @@ export class TaskComponent implements OnInit , AfterViewInit{
                     //console.log("ToDo: " + window.JSON.stringify(todo) + " --- " + "In Progress: " + window.JSON.stringify(inprogress) + " --- " + "Completed: " + window.JSON.stringify(completed));
                 }
             }).disableSelection();
+
+            // var ta = document.getElementsByName('textarea');
+            //   ta.addEventListener('focus', function(){
+            //     autosize(ta);
+            //   });
+
+              $(".editable-textarea").each(function () {
+                autosize(this);
+            });
+
+            //autosize($('#txtAreaTitleBoard'));
   }
 
 }

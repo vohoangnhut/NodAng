@@ -120,3 +120,22 @@
             top: 0;
             right: 0;
         }
+
+
+textarea{  
+  display:block;
+  box-sizing: padding-box;
+  overflow:hidden;
+  resize: none;
+  padding:10px;
+  font-weight: 600;
+  width:250px;
+  font-size:16px;
+  border:0;
+  margin-bottom: 10px;
+}
+
+textarea:focus {
+  outline-width: 2px;
+      background-color: #f3f3f4;
+}

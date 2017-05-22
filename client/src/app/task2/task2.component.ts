@@ -60,6 +60,9 @@ export class Task2Component implements OnInit, AfterViewInit {
 
     
     autosize($('#textDemo'));
+
   }
+
+  
 
 }
