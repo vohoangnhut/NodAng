@@ -3,35 +3,39 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { taskVO } from '../VO/taskVO';
 import { boardVO } from '../VO/boardVO';
 
-export const lstBoardVO: boardVO[] = [
-  {id: 1, boardId: 'BAD_1', boardNm:'Board 1'},
-  {id: 2, boardId: 'BAD_2', boardNm:'Board 2'},
-  {id: 3, boardId: 'BAD_3', boardNm:'Board 3'}
-];
-
-export const lstTaskVO: taskVO[] = [
-  {id: 1, boardId: 'BAD_1', taskId:'TSK_1', taskNm:'Task 1',taskSts: 'In Process'},
-  {id: 1, boardId: 'BAD_1', taskId:'TSK_2', taskNm:'Task 2',taskSts: 'Complete'},
-  {id: 1, boardId: 'BAD_1', taskId:'TSK_3', taskNm:'Task 3',taskSts: 'In Process'},
-  {id: 1, boardId: 'BAD_1', taskId:'TSK_4', taskNm:'Task 4',taskSts: 'In Process'},
-  {id: 1, boardId: 'BAD_2', taskId:'TSK_5', taskNm:'Task 5',taskSts: 'In Process'},
-  {id: 1, boardId: 'BAD_2', taskId:'TSK_6', taskNm:'Task 6',taskSts: 'In Process'}
-];
+import { TaskService } from '../service/task.service'
 
 @Component({
   selector: 'task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.css'],
+  providers: [ TaskService ]
 })
 export class TaskComponent implements OnInit , AfterViewInit{
 
-  lstBoard = lstBoardVO
-  lstTask = lstTaskVO
-  constructor() {}
+  // lstBoard = lstBoardVO
+  // lstTask = lstTaskVO
+  lstBoard:boardVO[]
+  lstTask:taskVO[]
+  constructor(
+    private taskService: TaskService
+  ){}
 
+  //Call API 
+  getLstBoard(){
+    this.taskService.getLstBoard()
+            .then(lstReturn => this.lstBoard = lstReturn)
+  }
+
+   getLstTask(){
+    this.taskService.getLstTask()
+            .then(lstReturn => this.lstTask = lstReturn)
+  }
 
 
   ngOnInit() {
+    this.getLstBoard()
+    this.getLstTask()
   }
 
   ngAfterViewInit() {
@@ -75,8 +79,6 @@ export class TaskComponent implements OnInit , AfterViewInit{
     $('#txtBoardNm').blur()
   }
 
-  txtBoardNm
-
   addNewTask_enter(event:any,boardId:string){
     let newTask = new taskVO();
     newTask.id = 12;
@@ -89,7 +91,7 @@ export class TaskComponent implements OnInit , AfterViewInit{
     event.target.blur();
   }
 
-    addNewTask_click(boardId:string){
+  addNewTask_click(boardId:string){
     let newTask = new taskVO();
     newTask.id = 12;
     newTask.boardId = boardId;

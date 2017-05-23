@@ -21,7 +21,9 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
-    "nodemon": "*"
+    "nodemon": "*",
+    "sequelize": "^3.30.2",
+    "mysql": "^2.13.0"
   },
   "author": "nhutvo",
   "license": "MIT",

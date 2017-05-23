@@ -23,6 +23,10 @@ require('./routes/routes')(app)
 
 app.set('port', process.env.PORT || 8080)
 
-app.listen(app.get('port'), function(){console.log(`app is running on port ${app.get('port')}`)})
 
-
+const db = require('./models/index')
+db.db_sequelize.sync({force: true})
+//db.db_sequelize.sync()
+    .then(()=>{
+        app.listen(app.get('port'), function(){console.log(`app is running on port ${app.get('port')}`)})
+})
