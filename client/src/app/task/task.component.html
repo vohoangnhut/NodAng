@@ -1,21 +1,52 @@
 
 <div class="container-scroll-parent">
     <div class="wrapper wrapper-content animated fadeInRight boardBox">
+   
 
-          
-                <div class="topic-box">
+                <div class="topic-box" *ngFor="let itemBoard of lstBoard">
                     <div class="ibox taskBox">
                         <div class="ibox-content">
                             <div class="boardTitle">
-                                <textarea maxlength="200" rows='1' class="editable-textarea">To-do Simply dummy text of the printing and typesetting industry.</textarea>
+                                <textarea maxlength="200" rows='1' class="editable-textarea" (keydown.enter)="textArea_keydown($event)" [(ngModel)]="itemBoard.boardNm">{{itemBoard.boardNm}}</textarea>
                                 <div class="boardTitleFuction">
-                                    <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
-                                    <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
+                                    <a class="btn btn-xs btn-white btn-bitbucket"><i class="fa fa-ellipsis-v"></i></a>
+                                </div>
+                            </div>
+                            <div class="input-group add-new-task">
+                                <input type="text" placeholder="Add new task ... " class="input input-sm form-control" (keyup.enter)="addNewTask_enter($event,itemBoard.boardId)" [id]="itemBoard.boardId">
+                                <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-white" (click)="addNewTask_click(itemBoard.boardId)"><i class="fa fa-plus"></i></button>
+                                </span>
+                            </div>
+                            <ul class="sortable-list connectList agile-list" id="todo" *ngFor="let itemTask of lstTask">
+
+                                <li [ngClass]="{'warning-element': itemTask.taskSts == 'In Process', 'success-element': itemTask.taskSts == 'Complete'}" *ngIf="itemTask.boardId == itemBoard.boardId"  id="{{itemTask.taskId}}">
+                                    
+                                    {{itemTask.taskNm}}
+                                    <div class="agile-detail">
+                                        <a href="#" class="pull-right btn btn-xs " [ngClass]="{'btn-white': itemTask.taskSts == 'In Process', 'btn-primary': itemTask.taskSts == 'Complete'}">{{itemTask.taskSts}}</a>
+                                        <i class="fa fa-clock-o"></i> 12.10.2015
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+
+        <!--<div class="topic-box">
+                    <div class="ibox taskBox">
+                        <div class="ibox-content">
+                            <div class="boardTitle">
+                                <textarea maxlength="200" rows='1' class="editable-textarea" (keydown.enter)="textArea_keydown($event)">To-do Simply dummy text of the printing and typesetting industry.</textarea>
+                                <div class="boardTitleFuction">
+                                    <a class="btn btn-xs btn-white btn-bitbucket"><i class="fa fa-ellipsis-v"></i></a>
                                 </div>
                             </div>
 
                             
-
                             <div class="input-group add-new-task">
                                 <input type="text" placeholder="Add new task ... " class="input input-sm form-control">
                                 <span class="input-group-btn">
@@ -58,129 +89,19 @@
 
                         </div>
                     </div>
-                </div>
-
-                <div class="topic-box">
-                    <div class="ibox taskBox">
-                        <div class="ibox-content">
-                            <div class="boardTitle">
-                                <textarea maxlength="200" rows='1' class="editable-textarea">To-do Simply dummy text of the printing and typesetting industry.</textarea>
-                                <div class="boardTitleFuction">
-                                    <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
-                                    <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
-                                </div>
-                            </div>
-
-                            <div class="input-group add-new-task">
-                                <input type="text" placeholder="Add new task. " class="input input-sm form-control">
-                                <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-plus"></i></button>
-                                </span>
-                            </div>
-
-                            <ul class="sortable-list connectList agile-list" id="inprogress1">
-                                
-                            </ul>
-
-                        </div>
-                    </div>
-                </div>
-
-               
-                <div class="topic-box">
-                    <div class="ibox taskBox">
-                        <div class="ibox-content">
-                            <h3>In Progress</h3>
-
-                            <div class="input-group add-new-task">
-                                <input type="text" placeholder="Add new task. " class="input input-sm form-control">
-                                <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-plus"></i></button>
-                                </span>
-                            </div>
-
-                            <ul class="sortable-list connectList agile-list" id="inprogress">
-                                <li class="info-element" id="task16">
-                                    Sometimes by accident, sometimes on purpose (injected humour and the like).
-                                    <div class="agile-detail">
-                                        <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
-                                        <i class="fa fa-clock-o"></i> 16.11.2015
-                                    </div>
-                                </li>
-                                <li class="warning-element" id="task17">
-                                    Ut porttitor augue non sapien mollis accumsan.
-                                    Nulla non elit eget lacus elementum viverra.
-                                    <div class="agile-detail">
-                                        <a href="#" class="pull-right btn btn-xs btn-white">Tag</a>
-                                        <i class="fa fa-clock-o"></i> 09.12.2015
-                                    </div>
-                                </li>
-
-                                 <li class="warning-element" id="task17">
-                                    Ut porttitor augue non sapien mollis accumsan.
-                                    Nulla non elit eget lacus elementum viverra.
-                                    Ut porttitor augue non sapien mollis accumsan.
-                                    Nulla non elit eget lacus elementum viverra.
-                                    Ut porttitor augue non sapien mollis accumsan.
-                                    Nulla non elit eget lacus elementum viverra.
-                                    <div class="agile-detail">
-                                        <a href="#" class="pull-right btn btn-xs btn-white">Tag</a>
-                                        <i class="fa fa-clock-o"></i> 09.12.2015
-                                    </div>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="topic-box">
-                    <div class="ibox taskBox">
-                        <div class="ibox-content">
-                            <h3>Completed</h3>
-
-                            <div class="input-group add-new-task">
-                                <input type="text" placeholder="Add new task. " class="input input-sm form-control">
-                                <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-plus"></i></button>
-                                </span>
-                            </div>
-
-                            <ul class="sortable-list connectList agile-list" id="completed">
-                                <li class="info-element" id="task16">
-                                    Sometimes by accident, sometimes on purpose (injected humour and the like).
-                                    <div class="agile-detail">
-                                        <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
-                                        <i class="fa fa-clock-o"></i> 16.11.2015
-                                    </div>
-                                </li>
-                                <li class="warning-element" id="task17">
-                                    Ut porttitor augue non sapien mollis accumsan.
-                                    Nulla non elit eget lacus elementum viverra.
-                                    <div class="agile-detail">
-                                        <a href="#" class="pull-right btn btn-xs btn-white">Tag</a>
-                                        <i class="fa fa-clock-o"></i> 09.12.2015
-                                    </div>
-                                </li>
-                            </ul>
-
-                        </div>
-                    </div>
-                </div>
+                </div>-->
 
                 <div class="topic-box">
                     <div class="ibox taskBox">
                         <div class="ibox-content">
                             <div class="input-group">
-                                <input type="text" placeholder="Add new list ..." class="input input-sm form-control">
+                                <input type="text" placeholder="Add new list ..." class="input input-sm form-control" (keyup.enter)="addNewBoard_enter($event)" id="txtBoardNm">
                                 <span class="input-group-btn">
-                                        <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-plus"></i></button>
+                                        <button type="button" class="btn btn-sm btn-white" (click)="addNewBoard_click()"> <i class="fa fa-plus"></i></button>
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
-
     </div>
 </div>   
