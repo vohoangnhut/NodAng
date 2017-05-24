@@ -20,12 +20,12 @@
                             </div>
                             <ul class="sortable-list connectList agile-list" id="todo" *ngFor="let itemTask of lstTask">
 
-                                <li [ngClass]="{'warning-element': itemTask.taskSts == 'In Process', 'success-element': itemTask.taskSts == 'Complete'}" *ngIf="itemTask.boardId == itemBoard.boardId"  id="{{itemTask.taskId}}">
+                                <li [ngClass]="{'warning-element': itemTask.taskStt == 'In Process', 'success-element': itemTask.taskStt == 'Complete'}" *ngIf="itemTask.boardId == itemBoard.boardId"  id="{{itemTask.taskId}}">
                                     
                                     {{itemTask.taskNm}}
                                     <div class="agile-detail">
-                                        <a href="#" class="pull-right btn btn-xs " [ngClass]="{'btn-white': itemTask.taskSts == 'In Process', 'btn-primary': itemTask.taskSts == 'Complete'}">{{itemTask.taskSts}}</a>
-                                        <i class="fa fa-clock-o"></i> 12.10.2015
+                                        <a href="#" class="pull-right btn btn-xs " [ngClass]="{'btn-white': itemTask.taskStt == 'In Process', 'btn-primary': itemTask.taskStt == 'Complete'}">{{itemTask.taskStt}}</a>
+                                        <i class="fa fa-clock-o"></i> {{itemTask.updatedAt | date:'dd-MM-yyyy mm:ss'}}
                                     </div>
                                 </li>
                             </ul>

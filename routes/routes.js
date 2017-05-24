@@ -5,6 +5,19 @@ module.exports = (app ) => {
         
         app.get('/' ,defualtController.homePage);
 
+        // app.get('/board' ,defualtController.getlstBoard);
+
+        // app.get('/task' ,defualtController.getlstTask);
+
+        app.get('/boardandtask', defualtController.getBoardAndTask)
+
+        app.post('/board', defualtController.createBoard)
+        app.post('/task', defualtController.createTask)
+
+          app.put('/board', defualtController.updateBoard)
+        
+        //app.get('*',defualtController.homePage)
+
 }
 
 // // function isLoggedIn(req, res, next){

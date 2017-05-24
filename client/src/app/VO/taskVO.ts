@@ -3,5 +3,8 @@ export class taskVO {
   boardId: string;
   taskId: string;
   taskNm: string;
-  taskSts: string;
+  taskStt: string;
+  taskNote: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

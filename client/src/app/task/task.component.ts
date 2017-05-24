@@ -21,21 +21,29 @@ export class TaskComponent implements OnInit , AfterViewInit{
     private taskService: TaskService
   ){}
 
-  //Call API 
-  getLstBoard(){
-    this.taskService.getLstBoard()
-            .then(lstReturn => this.lstBoard = lstReturn)
+  getBoardAndTask(){
+    this.taskService.getBoardAndTask()
+            .then((lstReturn) => {
+              this.lstBoard = lstReturn['lstBoard']
+              this.lstTask = lstReturn['lstTask']
+            })
   }
 
-   getLstTask(){
-    this.taskService.getLstTask()
-            .then(lstReturn => this.lstTask = lstReturn)
-  }
+  //Call API 
+  // getLstBoard(){
+  //   this.taskService.getLstBoard()
+  //           .then((lstReturn) => {this.lstBoard = lstReturn
+  //           console.log(lstReturn)})
+  // }
+
+  //  getLstTask(){
+  //   this.taskService.getLstTask()
+  //           .then((lstReturn) => {this.lstTask = lstReturn;console.log(lstReturn)})
+  // }
 
 
   ngOnInit() {
-    this.getLstBoard()
-    this.getLstTask()
+    this.getBoardAndTask()
   }
 
   ngAfterViewInit() {
@@ -60,6 +68,8 @@ export class TaskComponent implements OnInit , AfterViewInit{
   }
 
   addNewBoard_enter(event:any) {
+    if(!event.target.value)
+      return;
     let newBoard = new boardVO();
     newBoard.id = 12;
     newBoard.boardId = (Date.now().toString(36) + Math.random().toString(36).substr(2, 9)).toUpperCase()
@@ -67,9 +77,13 @@ export class TaskComponent implements OnInit , AfterViewInit{
     this.lstBoard.push(newBoard);
     event.target.value = '';
     event.target.blur();
+
+    this.saveBoard(newBoard);
   }
 
    addNewBoard_click() {
+     if(!$('#txtBoardNm').val())
+      return;
     let newBoard = new boardVO();
     newBoard.id = 12;
     newBoard.boardId = (Date.now().toString(36) + Math.random().toString(36).substr(2, 9)).toUpperCase()
@@ -77,30 +91,58 @@ export class TaskComponent implements OnInit , AfterViewInit{
     this.lstBoard.push(newBoard)
     $('#txtBoardNm').val('')
     $('#txtBoardNm').blur()
+
+    this.saveBoard(newBoard);
   }
 
   addNewTask_enter(event:any,boardId:string){
-    let newTask = new taskVO();
-    newTask.id = 12;
-    newTask.boardId = boardId;
-    newTask.taskNm = event.target.value
-    newTask.taskId = (Date.now().toString(36) + Math.random().toString(36).substr(2, 9)).toUpperCase()
-    newTask.taskSts = 'In Process'
-    this.lstTask.push(newTask);
-    event.target.value = '';
-    event.target.blur();
+    if(event.target.value)
+    {
+      let newTask = new taskVO();
+      newTask.id = 12;
+      newTask.boardId = boardId;
+      newTask.taskNm = event.target.value
+      newTask.taskId = (Date.now().toString(36) + Math.random().toString(36).substr(2, 9)).toUpperCase()
+      newTask.taskStt = 'In Process'
+      
+      event.target.value = '';
+      event.target.blur();
+
+      this.taskService.createTask(newTask.boardId,newTask.taskId,newTask.taskNm,newTask.taskStt,"demo note")
+      .then((taskNew) => {this.lstTask.push(taskNew);});
+
+      //this.saveTask(newTask);
+    }
+
   }
 
   addNewTask_click(boardId:string){
-    let newTask = new taskVO();
-    newTask.id = 12;
-    newTask.boardId = boardId;
-    newTask.taskNm = $('#'+boardId).val()
-    newTask.taskId = (Date.now().toString(36) + Math.random().toString(36).substr(2, 9)).toUpperCase()
-    newTask.taskSts = 'In Process'
-    this.lstTask.push(newTask);
-    $('#'+boardId).val('')
-    $('#'+boardId).blur();
+    if($('#'+boardId).val())
+    {
+      let newTask = new taskVO();
+      newTask.id = 12;
+      newTask.boardId = boardId;
+      newTask.taskNm = $('#'+boardId).val()
+      newTask.taskId = (Date.now().toString(36) + Math.random().toString(36).substr(2, 9)).toUpperCase()
+      newTask.taskStt = 'In Process'
+      //this.lstTask.push(newTask);
+      $('#'+boardId).val('')
+      $('#'+boardId).blur();
+      this.taskService.createTask(newTask.boardId,newTask.taskId,newTask.taskNm,newTask.taskStt,"demo note")
+      .then((taskNew) => {this.lstTask.push(taskNew);});
+      //this.saveTask(newTask);
+    }
+
+  }
+
+  // saveTask(item:taskVO):Promise<taskVO> {
+  //   return this.taskService.createTask(item.boardId,item.taskId,item.taskNm,item.taskStt,item.taskNote)
+  //   .then((taskNew) => {taskNew});
+  // }
+
+   saveBoard(item:boardVO){
+    this.taskService.createBoard(item.boardId,item.boardNm)
+    .then((boardNew) => {console.log(boardNew)});
   }
 
   
