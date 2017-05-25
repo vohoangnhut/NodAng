@@ -11,6 +11,13 @@ const insertTask = (boardId,taskId,taskNm,taskStt,taskNote) => {
     })
 }
 
+const selectByName = (name) => {
+    return task.findAll({
+        where: {
+            taskNm: {$like: '%'+name+'%'}
+        }
+    })
+}
 
 const deleteTask = (taskId) => {
     return task.destroy({
@@ -39,4 +46,5 @@ module.exports = {
     insertTask,
     deleteTask,
     updateTask,
+    selectByName
 }

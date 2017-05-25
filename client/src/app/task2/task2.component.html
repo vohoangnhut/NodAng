@@ -17,5 +17,17 @@
             </div>
             <br/>
             <textarea maxlength="200" rows='1' id="textDemo">To-do Simply dummy text of the printing and typesetting industry.</textarea>
+
+            <br/>
+            <hr>
+            <div id="search-component">
+            <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+            <div>
+                <div *ngFor="let hero of lstTaskMatch | async"
+                    class="search-result" >
+                    {{hero.taskNm}}
+                </div>
+            </div>
+            </div>
     </div>
 </div>

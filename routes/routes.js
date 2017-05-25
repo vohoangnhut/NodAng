@@ -7,7 +7,10 @@ module.exports = (app ) => {
 
         // app.get('/board' ,defualtController.getlstBoard);
 
-        // app.get('/task' ,defualtController.getlstTask);
+       app.get('/task' ,defualtController.homePage);
+       app.get('/task2' ,defualtController.homePage);
+
+         app.get('/searchTask' ,defualtController.searchTaskByName);
 
         app.get('/boardandtask', defualtController.getBoardAndTask)
 

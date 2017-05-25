@@ -69,6 +69,13 @@ export class TaskService {
                .catch(this.handleError);
   }
 
+  searchTaskByName(srchStr: string): Observable<taskVO[]>{
+    console.log(`it is comming to service angular ::: `)
+    return this.http
+            .get(`http://localhost:8080/searchTask/?name=${srchStr}`)
+            .map(response => response.json())
+  }
+
     private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);

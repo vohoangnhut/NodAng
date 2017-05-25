@@ -6,6 +6,29 @@ function homePage(req,res){
     res.render('index.html')
 }
 
+function task(req,res){
+    //res.send(JSON.stringify({"don":"don"}))
+    res.render('index.html')
+}
+
+function task2(req,res){
+    //res.send(JSON.stringify({"don":"don"}))
+    res.render('index.html')
+}
+
+function searchTaskByName(req,res){
+    const name = req.query.name;
+    console.log(`searchTaskByName : ${name}`)
+            //select peron by name
+    taskService.selectByName(name).then((taskList)=> {
+        console.log(`return list : ${taskList}`)
+        res.setHeader('Content-Type', 'application/json');
+        var json = JSON.stringify(taskList);
+        res.end(json);
+    })
+}
+
+
 const getBoardAndTask = (req,res) => {
 
   boardService.selectAllBoard().then(
@@ -94,5 +117,5 @@ module.exports = {
   homePage,
   getlstBoard,
   getlstTask,createBoard,updateBoard,
-  createTask,getBoardAndTask
+  createTask,getBoardAndTask,searchTaskByName
 }
