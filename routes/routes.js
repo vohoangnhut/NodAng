@@ -15,6 +15,7 @@ module.exports = (app ) => {
         app.get('/boardandtask', defualtController.getBoardAndTask)
 
         app.post('/board', defualtController.createBoard)
+        app.post('/boardUpadte', defualtController.updateBoardPosition)
         app.post('/task', defualtController.createTask)
 
           app.put('/board', defualtController.updateBoard)

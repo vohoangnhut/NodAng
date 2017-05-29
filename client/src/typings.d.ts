@@ -6,3 +6,4 @@ interface NodeModule {
 
 declare var $: any;
 declare var autosize:any;
+declare var Sortable:any;

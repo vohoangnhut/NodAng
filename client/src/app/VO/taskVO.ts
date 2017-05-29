@@ -7,4 +7,5 @@ export class taskVO {
   taskNote: string;
   createdAt: Date;
   updatedAt: Date;
+  orderNo : number;
 }

@@ -36,7 +36,8 @@
         "./assets/js/plugins/touchpunch/jquery.ui.touch-punch.min.js",
         "./assets/js/inspinia.js",
         "./assets/js/plugins/pace/pace.min.js",
-        "../node_modules/autosize/dist/autosize.min.js"
+        "../node_modules/autosize/dist/autosize.min.js",
+        "../node_modules/sortablejs/Sortable.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

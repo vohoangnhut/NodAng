@@ -11,6 +11,9 @@ module.exports = (db,DataTypes) => {
             },
             boardNm: {
                 type: DataTypes.TEXT
+            },
+            orderNo: {
+                type: DataTypes.INTEGER
             }
     }
 

@@ -27,6 +27,7 @@ import { boardVO } from '../VO/boardVO';
 export class TaskService {
   private apiWebServiceTask = 'http://localhost:8080/task';  // URL to web api
   private apiWebServiceBoard = 'http://localhost:8080/board';  // URL to web api
+  private apiWebServiceBoard1 = 'http://localhost:8080/boardUpadte';  // URL to web api
   constructor(private http: Http) { }
 
   // getLstBoard():Promise<boardVO[]>{
@@ -107,6 +108,14 @@ export class TaskService {
   createBoard(id:String,name:String): Promise<boardVO> {
      return this.http
     .post(this.apiWebServiceBoard, JSON.stringify({id:id, name: name}), {headers: this.headers})
+    .toPromise()
+    .then(res => res.json())
+    .catch(this.handleError);
+  }
+
+   updateBoardPosition(lstBoardId:String[]): Promise<boardVO> {
+     return this.http
+    .post(this.apiWebServiceBoard1, JSON.stringify({lstBoardId:lstBoardId}), {headers: this.headers})
     .toPromise()
     .then(res => res.json())
     .catch(this.handleError);

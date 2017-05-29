@@ -20,6 +20,9 @@ module.exports = (db,DataTypes) => {
             },
             taskNote: { //Note
                 type: DataTypes.TEXT
+            },
+            orderNo: {
+                type: DataTypes.INTEGER
             }
     }
 

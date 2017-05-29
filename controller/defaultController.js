@@ -68,13 +68,37 @@ const getlstTask = (req,res) => {
 const createBoard = (req, res) => {
     const name = req.body.name;
     const id = req.body.id;
-    boardService.insertBoard(id,name).then((board)=>{
-        if(!board)
-            res.end(null);
-        else
-            res.end(JSON.stringify(board));
+
+    boardService.selectMaxOrderNo().then((maxOrderNo)=> {
+        if(!maxOrderNo)
+            maxOrderNo = 0;
+        
+        boardService.insertBoard(id,name,maxOrderNo+1).then((board)=>{
+                    if(!board)
+                        res.end(null);
+                    else
+                    {
+                        console.log('board OrderNo : ' + board.orderNo)
+                        res.end(JSON.stringify(board));
+                    }
+                        
+        })
+
+
     })
+
+   
     
+}
+
+const updateBoardPosition = (req, res) => {
+    const lstBoard = req.body.lstBoardId;
+    lstBoard.forEach((item, index)=>{
+        console.log(item + "--" + index)
+        boardService.updateOrderBoard(item,index+1);
+    });
+
+    res.end(JSON.stringify('done'))
 }
 
 const updateBoard = (req, res) => {
@@ -117,5 +141,5 @@ module.exports = {
   homePage,
   getlstBoard,
   getlstTask,createBoard,updateBoard,
-  createTask,getBoardAndTask,searchTaskByName
+  createTask,getBoardAndTask,searchTaskByName,updateBoardPosition
 }

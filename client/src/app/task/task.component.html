@@ -1,9 +1,9 @@
 
 <div class="container-scroll-parent">
-    <div class="wrapper wrapper-content animated fadeInRight boardBox">
+    <div class="wrapper wrapper-content animated fadeInRight boardBox" id="drapableDiv">
    
 
-                <div class="topic-box" *ngFor="let itemBoard of lstBoard">
+                <div class="topic-box drapableTopic" *ngFor="let itemBoard of lstBoard" id="{{itemBoard.boardId}}">
                     <div class="ibox taskBox">
                         <div class="ibox-content">
                             <div class="boardTitle">
@@ -18,9 +18,9 @@
                                         <button type="button" class="btn btn-sm btn-white" (click)="addNewTask_click(itemBoard.boardId)"><i class="fa fa-plus"></i></button>
                                 </span>
                             </div>
-                            <ul class="sortable-list connectList agile-list" id="todo" *ngFor="let itemTask of lstTask">
+                            <ul class="sortable-list connectList agile-list" *ngFor="let itemTask of lstTask">
 
-                                <li [ngClass]="{'warning-element': itemTask.taskStt == 'In Process', 'success-element': itemTask.taskStt == 'Complete'}" *ngIf="itemTask.boardId == itemBoard.boardId"  id="{{itemTask.taskId}}">
+                                <li *ngIf="itemTask.boardId == itemBoard.boardId" [ngClass]="{'handlerDrap warning-element': itemTask.taskStt == 'In Process', 'handlerDrap success-element': itemTask.taskStt == 'Complete'}"  id="{{itemTask.taskId}}">
                                     
                                     {{itemTask.taskNm}}
                                     <div class="agile-detail">
